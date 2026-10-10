@@ -1,6 +1,6 @@
 <script setup lang="ts">
 interface Props {
-  modelValue: string;
+  modelValue: string | number;
   label?: string;
   placeholder?: string;
   type?: string;
@@ -8,11 +8,17 @@ interface Props {
   isValid?: boolean;
 }
 
-defineProps<Props>();
+const props = defineProps<Props>();
 
-defineEmits<{
-  (e: 'update:modelValue', value: string): void;
+const emit = defineEmits<{
+  (e: 'update:modelValue', value: string | number): void;
 }>();
+
+const handleInput = (event: Event) => {
+  const target = event.target as HTMLInputElement;
+  const val = props.type === 'number' ? (target.value === '' ? '' : Number(target.value)) : target.value;
+  emit('update:modelValue', val);
+};
 </script>
 
 <template>
@@ -28,7 +34,7 @@ defineEmits<{
           'is-invalid': !!errorMessage,
           'is-valid': isValid && !errorMessage
         }"
-        @input="$emit('update:modelValue', ($event.target as HTMLInputElement).value)"
+        @input="handleInput"
       />
       <span v-if="isValid && !errorMessage" class="valid-icon">✓</span>
     </div>
@@ -47,7 +53,7 @@ defineEmits<{
 .input-label {
   font-size: 13px;
   font-weight: 700;
-  color: #4a4a4a;
+  color: #4a4554;
   margin-bottom: 5px;
 }
 
@@ -60,16 +66,16 @@ defineEmits<{
 .form-field {
   width: 100%;
   padding: 8px 12px;
-  background-color: #f7f7f8;
-  border: 1px solid #e1e4e8;
-  border-radius: 4px;
+  background-color: #fbf9fe;
+  border: 1px solid #e3deee;
+  border-radius: 6px;
   font-size: 14px;
   outline: none;
-  transition: border-color 0.2s;
+  transition: border-color 0.2s ease, background-color 0.2s ease;
 
   &:focus {
     background-color: #ffffff;
-    border-color: #2bbbad;
+    border-color: #906cd4;
   }
 
   &.is-invalid {
@@ -78,7 +84,7 @@ defineEmits<{
   }
 
   &.is-valid {
-    border-color: #2bbbad;
+    border-color: #906cd4;
     padding-right: 32px;
   }
 }
@@ -86,7 +92,7 @@ defineEmits<{
 .valid-icon {
   position: absolute;
   right: 10px;
-  color: #2bbbad;
+  color: #906cd4;
   font-weight: bold;
 }
 

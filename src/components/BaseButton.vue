@@ -31,7 +31,7 @@ defineEmits<{
 <style scoped lang="scss">
 .btn-custom {
   border: none;
-  border-radius: 4px;
+  border-radius: 6px;
   padding: 8px 18px;
   font-size: 14px;
   font-weight: 500;
@@ -45,20 +45,20 @@ defineEmits<{
 }
 
 .btn-primary {
-  background-color: #2bbbad;
+  background-color: #906cd4;
   color: #ffffff;
 
   &:hover:not(:disabled) {
-    background-color: #249d91;
+    background-color: #7751be;
   }
 }
 
 .btn-secondary {
-  background-color: #e0e0e0;
-  color: #333333;
+  background-color: #f1ecfa;
+  color: #633ea8;
 
   &:hover:not(:disabled) {
-    background-color: #d4d4d4;
+    background-color: #e4dbf5;
   }
 }
 

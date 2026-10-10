@@ -28,10 +28,10 @@ defineEmits<{
 .winner-badge {
   display: inline-flex;
   align-items: center;
-  background-color: #4fc3f7;
-  color: #ffffff;
+  background-color: #d6c6f6;
+  color: #4c298a;
   padding: 4px 10px;
-  border-radius: 4px;
+  border-radius: 6px;
   font-size: 13px;
   margin-right: 6px;
   margin-bottom: 4px;
@@ -39,20 +39,20 @@ defineEmits<{
 
 .winner-name {
   margin-right: 6px;
-  font-weight: 500;
+  font-weight: 600;
 }
 
 .remove-btn {
   background: transparent;
   border: none;
-  color: #ffffff;
+  color: #4c298a;
   cursor: pointer;
   font-size: 14px;
   line-height: 1;
   padding: 0;
 
   &:hover {
-    color: #0d47a1;
+    color: #26114b;
   }
 }
 </style>
