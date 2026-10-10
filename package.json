@@ -4,14 +4,20 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "vite",
-    "build": "vue-tsc && vite build",
-    "preview": "vite preview",
-    "lint": "eslint . --ext .vue,.ts,.js --fix"
-  },
+  "dev": "vite",
+  "build": "vue-tsc && vite build",
+  "preview": "vite preview",
+  "lint": "eslint . --ext .vue,.ts,.js --fix",
+  "predeploy": "npm run build",
+  "deploy": "gh-pages -d dist"
+},
   "dependencies": {
     "bootstrap": "^5.3.8",
-    "vue": "^3.5.42"
+    "pinia": "^4.0.3",
+    "vee-validate": "^4.15.1",
+    "vue": "^3.5.42",
+    "vue-router": "^4.6.4",
+    "yup": "^1.7.1"
   },
   "devDependencies": {
     "@types/node": "^24.13.3",
@@ -21,6 +27,7 @@
     "@vue/tsconfig": "^0.9.1",
     "eslint": "^8.57.1",
     "eslint-plugin-vue": "^10.11.1",
+    "gh-pages": "^6.3.0",
     "sass": "^1.105.1",
     "typescript": "~6.0.2",
     "vite": "^8.3.0",
