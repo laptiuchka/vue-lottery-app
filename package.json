@@ -7,7 +7,7 @@
     "dev": "vite",
     "build": "vue-tsc && vite build",
     "preview": "vite preview",
-    "lint": "eslint . --ext .vue,.ts,.js --fix",
+    "lint:fsd": "eslint src --ext .ts,.vue",
     "predeploy": "npm run build",
     "deploy": "gh-pages -d dist"
   },
@@ -26,8 +26,9 @@
   "devDependencies": {
     "@types/node": "^24.13.3",
     "@typescript-eslint/eslint-plugin": "^8.71.0",
-    "@typescript-eslint/parser": "^8.71.0",
+    "@typescript-eslint/parser": "^8.71.2",
     "@vitejs/plugin-vue": "^6.0.8",
+    "@vue/eslint-config-typescript": "^14.9.0",
     "@vue/tsconfig": "^0.9.1",
     "eslint": "^8.57.1",
     "eslint-plugin-boundaries": "^7.2.0",
