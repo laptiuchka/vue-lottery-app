@@ -1,0 +1,1 @@
+export { default as UsersTableWidget } from './ui/UsersTableWidget.vue'
