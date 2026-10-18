@@ -5,15 +5,25 @@ import { useUsersStore } from '@/entities/user'
 import { UsersTableWidget } from '@/widgets/users-table'
 
 const usersStore = useUsersStore()
-const { users, isLoading } = storeToRefs(usersStore)
+const { users, isLoading, total } = storeToRefs(usersStore)
 
 onMounted(() => {
-  usersStore.fetchUsers()
+  if (users.value.length === 0) {
+    usersStore.fetchUsers({ limit: 208 })
+  }
 })
 </script>
 
 <template>
   <div class="users-page">
-    <UsersTableWidget :users="users" :loading="isLoading" />
+    <UsersTableWidget :users="users" :total="total" :loading="isLoading" />
   </div>
 </template>
+
+<style scoped>
+.users-page {
+  max-width: 1200px;
+  margin: 2rem auto;
+  padding: 0 1rem;
+}
+</style>

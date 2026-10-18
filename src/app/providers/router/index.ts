@@ -5,34 +5,34 @@ const routes = [
   {
     path: '/',
     name: 'home',
-    component: () => import('@/pages/home/HomePage.vue'),
+    component: () => import('@/pages/home').then((m) => m.HomePage),
   },
   {
     path: '/about',
     name: 'about',
-    component: () => import('@/pages/about/AboutPage.vue'),
+    component: () => import('@/pages/about').then((m) => m.AboutPage),
   },
   {
     path: '/login',
     name: 'login',
-    component: () => import('@/pages/login/LoginPage.vue'),
+    component: () => import('@/pages/login').then((m) => m.LoginPage),
   },
   {
     path: '/users',
     name: 'users',
-    component: () => import('@/pages/users/UsersPage.vue'),
+    component: () => import('@/pages/users').then((m) => m.UsersPage),
     meta: { requiresAuth: true },
   },
   {
     path: '/users/:id',
     name: 'user-details',
-    component: () => import('@/pages/user-details/UserDetailsPage.vue'),
+    component: () => import('@/pages/user-details').then((m) => m.UserDetailsPage),
     meta: { requiresAuth: true },
   },
   {
     path: '/:pathMatch(.*)*',
     name: 'not-found',
-    component: () => import('@/pages/not-found/NotFoundPage.vue'),
+    component: () => import('@/pages/not-found').then((m) => m.NotFoundPage),
   },
 ]
 
