@@ -56,14 +56,26 @@ export const useUsersStore = defineStore('users', () => {
     localStorage.setItem(LOCAL_STORAGE_DELETED_KEY, JSON.stringify(ids))
   }
 
-  async function fetchUsers() {
+  async function fetchUsers(searchQuery = '') {
     isLoading.value = true
     error.value = null
     try {
-      const data = await service().getAll({ limit: 208, skip: 0 })
+      const data = await service().getAll({
+        limit: 208,
+        skip: 0,
+        q: searchQuery.trim() || undefined
+      })
+
       const customUsers = getCustomUsers()
       const editedUsers = getEditedUsers()
       const deletedIds = getDeletedUserIds()
+
+      const query = searchQuery.toLowerCase().trim()
+      const filteredCustomUsers = customUsers.filter((u) => {
+        if (!query) return true
+        const fullName = `${u.firstName} ${u.lastName}`.toLowerCase()
+        return fullName.includes(query) || u.email.toLowerCase().includes(query)
+      })
 
       const apiUsers = (data.users || []).map((u) => {
         const numericId = Number(u.id)
@@ -73,7 +85,7 @@ export const useUsersStore = defineStore('users', () => {
         return u
       })
 
-      const combinedUsers = [...customUsers, ...apiUsers].filter(
+      const combinedUsers = [...filteredCustomUsers, ...apiUsers].filter(
         (u) => !deletedIds.includes(Number(u.id))
       )
 
