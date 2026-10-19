@@ -6,10 +6,15 @@ export interface User {
   age?: number
   gender?: string
   phone?: string
-  username?: string
-  image?: string
-  role?: string
 }
 
-export type CreateUserDto = Omit<User, 'id'>
+export interface CreateUserDto {
+  firstName: string
+  lastName: string
+  email: string
+  age?: number
+  gender?: string
+  phone?: string
+}
+
 export type UpdateUserDto = Partial<CreateUserDto>
