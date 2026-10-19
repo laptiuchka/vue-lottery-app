@@ -28,6 +28,12 @@ defineProps<{
         </template>
       </Column>
 
+      <Column v-else-if="col.field === 'fullName'" :header="col.header" :sortable="col.sortable">
+        <template #body="slotProps">
+          <slot name="fullName" :data="slotProps.data" />
+        </template>
+      </Column>
+
       <Column
         v-else
         :field="col.field"

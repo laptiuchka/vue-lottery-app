@@ -98,7 +98,7 @@ export const useUsersStore = defineStore('users', () => {
     }
   }
 
-  async function createUser(dto: CreateUserDto) {
+ async function createUser(dto: CreateUserDto) {
     isLoading.value = true
     try {
       await service().create(dto).catch(() => ({} as User))
@@ -109,7 +109,9 @@ export const useUsersStore = defineStore('users', () => {
         firstName: dto.firstName,
         lastName: dto.lastName,
         email: dto.email,
-        age: Number(dto.age)
+        age: Number(dto.age),
+        gender: dto.gender || 'female',
+        phone: dto.phone || ''
       }
 
       customUsers.unshift(newCustomUser)
